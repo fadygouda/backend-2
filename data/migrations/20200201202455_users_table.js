@@ -22,4 +22,5 @@ exports.up = function(knex) {
 exports.down = function(knex) {
   return knex.schema.dropTableIfExists('users')
     .dropTableIfExists('songs')
+    .dropTableIfExists('users_songs')
 };
