@@ -33,14 +33,3 @@ function add(user) {
         })
 }
 
-function update(id, user) {
-    return db('users')
-        .where('id', Number(id))
-        .update(user);
-}
-
-function remove(id) {
-    return db('users')
-        .where('id', Number(id))
-        .del();
-}        
