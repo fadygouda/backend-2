@@ -53,3 +53,32 @@ HTTP Method: **POST**
 | `password`  | String | Yes      | Not Nullable   |
 
 
+#### Example:
+
+```
+{
+  "id": 1,                               
+  "username": "robin",                
+  "password": "abc123"                  
+}
+
+```
+
+#### Response 
+
+#### Status 201 - Successful Signup
+- If the user signup was successful, the server will return the following  response:
+
+    "created": [
+        {
+            "id": 2,
+            "username": "danny",
+            "password": "$2a$10$lB/CPknd9cVuiGQ9UeuI6uU20AM5h8KE.G59kq5ZXFABJWhuV7gvO"
+        }
+    ]
+}
+
+- Notice that the password is hashed for security purposes courtesy of Bcryptjs. 
+- This is the way the data will appear on the table.  Password will not show.
+
+
