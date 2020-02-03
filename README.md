@@ -12,8 +12,8 @@ This app gives the user the ability to search for a specific song and see its au
 
 ```
 {
-  "id": 1,                                // Integer (primary key, autoincrements) "username": "username",                 // String, required
-  "password": "password"                  // String, required 
+  "id": 1,                                - Integer (primary key, autoincrements) "username": "username",                 - String, required
+  "password": "password"                  - String, required 
 }
 
 ```
@@ -22,11 +22,11 @@ This app gives the user the ability to search for a specific song and see its au
 
 ```
 {
-    "id": 1, 
-    "user_id": 2,
-    "song_title": "If It Isn't Love",
-    "artist": "New Edition",
-    "favorite": "true"
+    "id": 1,                          - Integer (primary key, autoincrements)
+    "user_id": 2,                    - Integer(foreign key, ref id from User Table)
+    "song_title": "If It Isn't Love",       - String, required
+    "artist": "New Edition",                - String, required
+    "favorite": "true"                      - String, required
 }
 
 ```
