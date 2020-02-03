@@ -11,9 +11,7 @@ server.use("/api/users", userRouter);
 server.use("/api/auth", authRouter);
 
 server.get("/", (req, res) => {
-  res.send({
-    Greeting: "Greetings from Port 5000"
-  });
+  res.send('<h2>Its Working!!!</h2>');
 });
 
 module.exports = server;

@@ -6,20 +6,20 @@ const {jwtSecret} = require('../config/secret');
 
 const Users = require('../users/user-model')
 
-router.get('/signup', (req, res) => {
-    if(req.headers.authorization) {
-        bc.hash(req.headers.authorization, 8,(err, hash)=> {
-            if(err) {
-                res.status(500).json({
-                    errorMessage: 'broken code',
-                    message: err.message
-                })
-            }else {
-                res.status(200).json({hash});
-            }
-        });
-    }
-})
+// router.get('/signup', (req, res) => {
+//     if(req.headers.authorization) {
+//         bc.hash(req.headers.authorization, 8,(err, hash)=> {
+//             if(err) {
+//                 res.status(500).json({
+//                     errorMessage: 'broken code',
+//                     message: err.message
+//                 })
+//             }else {
+//                 res.status(200).json({hash});
+//             }
+//         });
+//     }
+// })
 
 router.post('/signup', (req, res) => {
     const { username, password } = req.body;
@@ -60,6 +60,14 @@ router.post('/signin', (req, res) => {
       });
     });
 });
+
+router.put('/update', (req, res) =>{
+
+})
+
+router.delete('/remove', (req, res) => {
+    
+})
 
 function signToken(user) {
   const payload = {
