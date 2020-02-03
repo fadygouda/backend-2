@@ -1,9 +1,23 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const db = require("../data/dbConfig");
+const dB = require('../data/dbConfig');
 
-const Users = require("../users/user-model");
+const Users = require('./user-model');
+const restricted = require('../auth/restricted-middleware');
 
+router.get('/', restricted, (req, res) => {
+ Users.find()
+    .then(users => {
+        res.status(200).json(users)
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({ 
+            errorMessage: "Error retrieving the list of users", 
+            message: err.message
+        })
+    })
+})
 
 
 module.exports = router;
