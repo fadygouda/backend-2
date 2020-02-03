@@ -32,4 +32,24 @@ This app gives the user the ability to search for a specific song and see its au
 
 ```
 
+# Auth Routes
+
+## Sign Up
+### Registers A User
+Method Url: ``` /api/auth/signup ```
+HTTP Method: **POST**
+
+#### Headers
+
+| name           | type   | required | description              |
+| -------------- | ------ | -------- | ------------------------ |
+| `Content-Type` | String | Yes      | Must be application/json |
+
+#### Body
+
+| name        | type   | required | description    |
+| ----------- | ------ | -------- | -------------- |
+| `username`  | String | Yes      | Not Nullable   |
+| `password`  | String | Yes      | Not Nullable   |
+
 
