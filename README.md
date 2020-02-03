@@ -3,4 +3,32 @@
 Base URL: [https://spotify-song-suggester-3.herokuapp.com/](https://spotify-song-suggester-3.herokuapp.com/)
 
 ## Introduction
+Welcome to the Back End Development Portion of this Spotify Song Suggester App!!! 
+This app gives the user the ability to search for a specific song and see its audio features displayed in a visually appealing way. The app also identifies songs with similar audio features.
+
+## Database Schema
+
+`Users`
+
+```
+{
+  "id": 1,                                // Integer (primary key, autoincrements) "username": "username",                 // String, required
+  "password": "password"                  // String, required 
+}
+
+```
+
+`Songs`
+
+```
+{
+    "id": 1, 
+    "user_id": 2,
+    "song_title": "If It Isn't Love",
+    "artist": "New Edition",
+    "favorite": "true"
+}
+
+```
+
 
