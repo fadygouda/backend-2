@@ -27,7 +27,7 @@ This app gives the user the ability to search for a specific song and see its au
     "user_id": 2,                           - Integer(foreign key, references id from Users Table)
     "song_title": "If It Isn't Love",       - String, required
     "artist": "New Edition",                - String, required
-    "favorite": "true"                      - String, required
+    "favorite": "true"                      - Boolean, required
 }
 
 ```
