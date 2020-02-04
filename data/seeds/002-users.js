@@ -3,7 +3,7 @@ const faker = require('faker')
 
 const createFakeUser = () => ({
   username: faker.internet.userName(),
-  password: bcrypt.hashSync("abc123", 8),
+  password: bcrypt.hashSync("abc12345", 8),
   email: faker.internet.email(),
   firstName: faker.name.firstName(),
   lastName: faker.name.lastName()
