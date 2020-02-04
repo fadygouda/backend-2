@@ -5,7 +5,7 @@ module.exports = {
     client: "sqlite3",
     useNullAsDefault: true,
     connection: {
-      filename: "./data/spotify.db3"
+      filename: "./data/spotify_data.db3"
     },
     migrations: {
       directory: "./data/migrations"
