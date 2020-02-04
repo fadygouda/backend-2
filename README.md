@@ -12,7 +12,7 @@ This app gives the user the ability to search for a specific song and see its au
 
 ```
 {
-  "id": 1,                                 - Integer (primary key)
+  
   "username": "username",                  - String, required
   "password": "password",                  - String, required 
   "email": "email",                        - String, required
@@ -63,7 +63,7 @@ HTTP Method: **POST**
 
 ```
 {
-                            
+
   "username": "janeDoe",                
   "password": "abc123",    
   "email": "janedoe@gmail.com",
