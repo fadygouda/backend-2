@@ -78,6 +78,10 @@ HTTP Method: **POST**
 #### Status 201 - Successful Signup
 - If the user signup was successful, the server will return the following  response:
 
-    
+   {
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5pbmEiLCJpYXQiOjE1ODA4MzA1MTYsImV4cCI6MTU4MDkxNjkxNn0.zioYrYXwP8aaxN8D-ZomMewhDDO1DI0pxP6I1El6JyY",
+    "username": "jane",
+    "message": "Hello jane, You're logged in!"
+} 
 
 
