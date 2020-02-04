@@ -12,9 +12,12 @@ This app gives the user the ability to search for a specific song and see its au
 
 ```
 {
-  "id": 1,                                - Integer (primary key)
-  "username": "username",                 - String, required
-  "password": "password"                  - String, required 
+  "id": 1,                                 - Integer (primary key)
+  "username": "username",                  - String, required
+  "password": "password",                  - String, required 
+  "email": "email",                        - String, required
+  "firstName: "firstName",                 - String, required
+  "lastName": "lastName"                   - String, required
 }
 
 ```
@@ -51,6 +54,9 @@ HTTP Method: **POST**
 | ----------- | ------ | -------- | -------------- |
 | `username`  | String | Yes      | Not Nullable   |
 | `password`  | String | Yes      | Not Nullable   |
+| `email`     | String | Yes      | Not Nullable   |
+| `firstName` | String | Yes      | Not Nullable   |
+| `lastName`  | String | Yes      | Not Nullable   |
 
 
 #### Example:
@@ -58,8 +64,11 @@ HTTP Method: **POST**
 ```
 {
   "id": 1,                               
-  "username": "robin",                
-  "password": "abc123"                  
+  "username": "janeDoe",                
+  "password": "abc123",    
+  "email": "janedoe@gmail.com",
+  "firstName": "jane",
+  "lastName": "doe",          
 }
 
 ```
@@ -69,16 +78,6 @@ HTTP Method: **POST**
 #### Status 201 - Successful Signup
 - If the user signup was successful, the server will return the following  response:
 
-    "created": [
-        {
-            "id": 2,
-            "username": "danny",
-            "password": "$2a$10$lB/CPknd9cVuiGQ9UeuI6uU20AM5h8KE.G59kq5ZXFABJWhuV7gvO"
-        }
-    ]
-}
-
-- Notice that the password is hashed for security purposes courtesy of Bcryptjs. 
-- This is the way the data will appear on the table.  Password will not show.
+    
 
 

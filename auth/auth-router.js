@@ -22,13 +22,13 @@ const Users = require('../users/user-model')
 // })
 
 router.post('/signup', (req, res) => {
-    const { username, password } = req.body;
+    const { username, password, email, firstName, lastName } = req.body;
     const hash = bc.hashSync(password, 10);
     
-        Users.add({username, password: hash})
+  Users.add({ username, password: hash, email, firstName, lastName})
         .then(user => {
             res.status(201).json({
-              message: `Welcome to Spotify ${user.username}`
+              message: `Welcome to Spotify`
             })
         })
         .catch(err => {
