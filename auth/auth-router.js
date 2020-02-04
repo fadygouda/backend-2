@@ -26,8 +26,10 @@ router.post('/signup', (req, res) => {
     const hash = bc.hashSync(password, 10);
     
         Users.add({username, password: hash})
-        .then(id => {
-            res.status(201).json({created: id})
+        .then(user => {
+            res.status(201).json({
+              message: "Welcome to Spotify"
+            })
         })
         .catch(err => {
             console.log(err);
@@ -50,6 +52,7 @@ router.post('/signin', (req, res) => {
         const token = signToken(user);
 
         res.status(200).json({ token });
+        console.log("TOKEN", token);
       } else {
         res.status(401).json({ message: 'Invalid Credentials' });
       }
