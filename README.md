@@ -63,7 +63,7 @@ HTTP Method: **POST**
 
 ```
 {
-  "id": 1,                               
+                            
   "username": "janeDoe",                
   "password": "abc123",    
   "email": "janedoe@gmail.com",
