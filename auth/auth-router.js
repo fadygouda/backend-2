@@ -28,7 +28,7 @@ router.post('/signup', (req, res) => {
         Users.add({username, password: hash})
         .then(user => {
             res.status(201).json({
-              message: "Welcome to Spotify"
+              message: `Welcome to Spotify ${user.username}`
             })
         })
         .catch(err => {
@@ -51,8 +51,10 @@ router.post('/signin', (req, res) => {
         
         const token = signToken(user);
 
-        res.status(200).json({ token });
-        console.log("TOKEN", token);
+        res.status(200).json({ 
+          token, username, 
+          message: `Hello ${user.username}, You're logged in!`
+         });
       } else {
         res.status(401).json({ message: 'Invalid Credentials' });
       }
