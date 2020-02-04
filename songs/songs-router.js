@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../data/dbConfig");
-
+const restricted = require("../auth/restricted-middleware");
 const Songs = require("../songs/songs-model");
 
 //Get songs list
 
-router.get('/', (req, res) => {
+router.get('/', restricted, (req, res) => {
 
     Songs.find()
         .then(songs => {
@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
 
 //Retrieve song by id
 
-router.get('/:id', (req, res) => {
+router.get('/:id', restricted, (req, res) => {
     const id = req.params.id;
 
     Songs.findById(id)
@@ -48,7 +48,7 @@ router.get('/:id', (req, res) => {
 
 //Add a song
 
-router.post('/', (req, res) => {
+router.post('/', restricted, (req, res) => {
     const songData = req.body;
 
     Songs.insert(songData)
