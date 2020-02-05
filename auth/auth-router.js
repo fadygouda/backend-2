@@ -1,12 +1,14 @@
 const router = require('express').Router();
 const bc = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const validateNewUser = require('./validateNewUser')
+
 
 const {jwtSecret} = require('../config/secret');
 
 const Users = require('../users/user-model')
 
-router.post('/signup', (req, res) => {
+router.post('/signup', validateNewUser, (req, res) => {
     //const { username, password, email, firstName, lastName } = req.body;
     const user = req.body;
     console.log(user);
@@ -62,54 +64,6 @@ router.post('/signin', (req, res) => {
     });
 });
 
-router.put('/:id', (req, res) => {
-   const id = req.params.id;
-      const { username, password } = req.body; 
-       if (!username || !password) {
-           return res.status(400).json({ 
-               errorMessage: "Please provide username and password for the user."
-           })
-       }
-       Users.update(id, {username, password})
-       .then(userUpdate => {
-           if(userUpdate) {
-               Users.findById(id)
-                .then(user => {
-                    res.status(201).json(user)
-                })
-           }else{
-               res.status(404).json({
-                   errorMessage: "The user with the specified ID does not exist."
-               })
-           }
-       })
-       .catch(err => {
-           res.status(500).json({
-               errorMessage: "The user information could not be modified."
-           })
-       })
-})
-
-router.delete('/:id', (req, res) => {
-  const { id } = req.params;
-  Users.remove(id)
-    .then(userRemoved => {
-      if (userRemoved) {
-        res.status(204).json(userRemoved)
-      } else {
-        res.status(404).json({
-          errorMessage: "The user with the specified ID does not exist."
-        })
-      }
-    })
-    .catch(err => {
-      res.status(500).json({
-        errorMessage: "The user could not be removed"
-      })
-    })
-
-
-})
 
 function signToken(user) {
   const payload = {
