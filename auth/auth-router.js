@@ -7,13 +7,21 @@ const {jwtSecret} = require('../config/secret');
 const Users = require('../users/user-model')
 
 router.post('/signup', (req, res) => {
-    const { username, password, email, firstName, lastName } = req.body;
-    const hash = bc.hashSync(password, 10);
+    //const { username, password, email, firstName, lastName } = req.body;
+    const user = req.body;
+    console.log(user);
+    const hash = bc.hashSync(user.password, 10);
+    user.password = hash;
     
-  Users.add({ username, password: hash, email, firstName, lastName})
-        .then(user => {
+    //console.log(username, password, email, firstName, lastName)
+  //Users.add({ username, password: hash, email, firstName, lastName})
+      Users.add(user)
+        .then(newUser => {
+            console.log(newUser)
             res.status(201).json({
-              message: `Welcome to Spotify`
+              user: newUser[0].username,
+              id: newUser[0].id,
+              message: `Welcome to Spotify ${newUser[0].username}`
             })
         })
         .catch(err => {
@@ -28,17 +36,19 @@ router.post('/signup', (req, res) => {
 
 router.post('/signin', (req, res) => {
   let { username, password } = req.body;
-  const { id } = req.params
 
     Users.findBy({ username })
     .first()
     .then(user => {
+      console.log(user);
       if (user && bc.compareSync(password, user.password)) {
         
         const token = signToken(user);
 
         res.status(200).json({ 
-          token, username, 
+          token: token,
+          user: user.username,
+          id: user.id,
           message: `Hello ${user.username}, You're logged in!`
          });
       } else {
