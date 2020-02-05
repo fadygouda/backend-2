@@ -6,21 +6,6 @@ const {jwtSecret} = require('../config/secret');
 
 const Users = require('../users/user-model')
 
-// router.get('/signup', (req, res) => {
-//     if(req.headers.authorization) {
-//         bc.hash(req.headers.authorization, 8,(err, hash)=> {
-//             if(err) {
-//                 res.status(500).json({
-//                     errorMessage: 'broken code',
-//                     message: err.message
-//                 })
-//             }else {
-//                 res.status(200).json({hash});
-//             }
-//         });
-//     }
-// })
-
 router.post('/signup', (req, res) => {
     const { username, password, email, firstName, lastName } = req.body;
     const hash = bc.hashSync(password, 10);
@@ -43,6 +28,7 @@ router.post('/signup', (req, res) => {
 
 router.post('/signin', (req, res) => {
   let { username, password } = req.body;
+  const { id } = req.params
 
     Users.findBy({ username })
     .first()
@@ -66,12 +52,53 @@ router.post('/signin', (req, res) => {
     });
 });
 
-router.put('/update', (req, res) =>{
-
+router.put('/:id', (req, res) => {
+   const id = req.params.id;
+      const { username, password } = req.body; 
+       if (!username || !password) {
+           return res.status(400).json({ 
+               errorMessage: "Please provide username and password for the user."
+           })
+       }
+       Users.update(id, {username, password})
+       .then(userUpdate => {
+           if(userUpdate) {
+               Users.findById(id)
+                .then(user => {
+                    res.status(201).json(user)
+                })
+           }else{
+               res.status(404).json({
+                   errorMessage: "The user with the specified ID does not exist."
+               })
+           }
+       })
+       .catch(err => {
+           res.status(500).json({
+               errorMessage: "The user information could not be modified."
+           })
+       })
 })
 
-router.delete('/remove', (req, res) => {
-    
+router.delete('/:id', (req, res) => {
+  const { id } = req.params;
+  Users.remove(id)
+    .then(userRemoved => {
+      if (userRemoved) {
+        res.status(204).json(userRemoved)
+      } else {
+        res.status(404).json({
+          errorMessage: "The user with the specified ID does not exist."
+        })
+      }
+    })
+    .catch(err => {
+      res.status(500).json({
+        errorMessage: "The user could not be removed"
+      })
+    })
+
+
 })
 
 function signToken(user) {
