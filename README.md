@@ -63,12 +63,11 @@ HTTP Method: **POST**
 
 ```
 {
-
-  "username": "janeDoe",                
-  "password": "abc123",    
-  "email": "janedoe@gmail.com",
-  "firstName": "jane",
-  "lastName": "doe",          
+	"username": "daniel",
+	"password": "abc123",
+	"email": "daniely@gmail.com",
+	"firstName": "Daniel",
+	"lastName": "LaRusso"
 }
 
 ```
@@ -78,10 +77,81 @@ HTTP Method: **POST**
 #### Status 201 - Successful Signup
 - If the user signup was successful, the server will return the following  response:
 
-   {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5pbmEiLCJpYXQiOjE1ODA4MzA1MTYsImV4cCI6MTU4MDkxNjkxNn0.zioYrYXwP8aaxN8D-ZomMewhDDO1DI0pxP6I1El6JyY",
-    "username": "jane",
-    "message": "Hello jane, You're logged in!"
-} 
+```
+{
+	"username": "daniel",
+	"password": "abc123",
+	"email": "daniely@gmail.com",
+	"firstName": "Daniel",
+	"lastName": "LaRusso"
+}
+
+```
+
+#### User Already In Database
+- If the user already has an account, the server will will return the following  response:
+
+```
+
+{
+    "errors": [
+        {
+            "username": "Username Already Exists!"
+        }
+    ]
+}
+
+```
+
+#### Minimum Character Length
+- The first name, last name, email, and password must have at least 5 characters.  If not, the server will return the following response:
+
+```
+
+{
+    "errors": [
+        {
+            "username": "Must be a minimum of 5 chars"
+        }
+    ]
+}
+
+```
+
+#### Maximum Character Length
+- The server will allow a maximum of 50 characters for username, otherwise the server will return the following response:
+
+```
+
+{
+    "errors": [
+        {
+            "username": "Must be a maximum of 50 chars"
+        }
+    ]
+}
+
+```
+
+#### Invalid Email Address
+- If the user inputs an invalid email, the server will respond with:
+
+```
+{
+    "errors": [
+        {
+            "error": "Unexpected Email Address"
+        }
+    ]
+}
+
+```
+
+#### Status 500 - Internal Server Error
+
+
+
+
+
 
 

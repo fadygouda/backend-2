@@ -15,15 +15,14 @@ router.post('/signup', validateNewUser, (req, res) => {
     const hash = bc.hashSync(user.password, 10);
     user.password = hash;
     
-    //console.log(username, password, email, firstName, lastName)
-  //Users.add({ username, password: hash, email, firstName, lastName})
+  
       Users.add(user)
         .then(newUser => {
             console.log(newUser)
             res.status(201).json({
               user: newUser[0].username,
               id: newUser[0].id,
-              message: `Welcome to Spotify ${newUser[0].username}`
+              message: `Welcome to Spotify ${newUser[0].firstName}`
             })
         })
         .catch(err => {
