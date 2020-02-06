@@ -150,6 +150,49 @@ HTTP Method: **POST**
 #### Status 500 - Internal Server Error
 
 
+# Signin
+
+### Signs In An Existing User
+Method Url: ``` /api/auth/signin ```
+HTTP Method: **POST**
+
+#### Headers
+
+| name           | type   | required | description              |
+| -------------- | ------ | -------- | ------------------------ |
+| `Content-Type` | String | Yes      | Must be application/json |
+
+#### Body
+
+| name        | type   | required | description    |
+| ----------- | ------ | -------- | -------------- |
+| `username`  | String | Yes      | Not Nullable   |
+| `password`  | String | Yes      | Not Nullable   |
+
+#### Status 200 - Successful Sign In
+- If the user sign in was successful, the server will return a token, the username,and the User ID in the following  response:
+
+```
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IndhbHRlciIsImlhdCI6MTU4MTAwMjQ3OSwiZXhwIjoxNTgxMDg4ODc5fQ.wJLvIcMHK26IElSh4cAcemCxg9mCOL4WyOd8FjCnToE",
+    "user": "walter",
+    "id": 10,
+    "message": "Hello walter, You're logged in!"
+}
+
+```
+
+#### Invalid Credentials
+- If the user inputs an invalid username and/or password, the server will respond with:
+
+```
+{
+    "message": "Invalid Credentials"
+}
+
+```
+
+
 
 
 
