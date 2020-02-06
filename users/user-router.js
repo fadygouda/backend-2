@@ -4,6 +4,7 @@ const dB = require('../data/dbConfig');
 
 const Users = require('./user-model');
 const restricted = require('../auth/restricted-middleware');
+const bcrypt = require('bcryptjs');
 
 router.get('/', restricted, (req, res) => {
  
@@ -22,31 +23,60 @@ router.get('/', restricted, (req, res) => {
 
 router.put('/:id', restricted, (req, res) => {
       const {id} = req.params;
-      const user = req.body; 
-       if (!user) {
-           return res.status(400).json({ 
-               errorMessage: "Please provide username, password, firs name, and last name for the user."
-           })
-       }
-         Users.update(user)
-       .then(userUpdate => {
-           if(userUpdate) {
-               dBase.findById(id)
-                .then(user => {
-                    res.status(201).json(user)
-                })
-           }else{
-               res.status(404).json({
-                   errorMessage: "The user with the specified ID does not exist."
-               })
-           }
-       })
-       .catch(err => {
-           res.status(500).json({
-               errorMessage: "The user information could not be modified."
-           })
-       })
-})
+      const userData = req.body; 
+      console.log(id);
+      console.log(userData);
+      Users.findById(id)
+      .then(u => {
+          console.log(u.id);
+          if(u.id == id) {
+              if(userData.password){
+                  const hash = bcrypt.hashSync(userData.password, 8);
+                  userData.password = hash;
+              }
+              Users.update(id, userData)
+              .then(updatedUser => {
+                  res.status(201).json({message: 'User updated successfully!!!'})
+              })
+              .catch(err => {
+                console.log(err)
+                res.status(404).json({ 
+                    message: 'User not found',
+                    errorMessage: err.message
+            })
+              })
+          }
+      })
+      .catch(err => {
+          res.status(500).json({
+               message: "User could not be updated",
+               errorMessage: err.message
+            })
+      })
+    //    if (!user) {
+    //        return res.status(400).json({ 
+    //            errorMessage: "Please provide username, password, first name, and last name for the user."
+    //        })
+    //    }
+    //      Users.update(user)
+    //    .then(userUpdate => {
+    //        if(userUpdate) {
+    //            Users.findById(id)
+    //             .then(user => {
+    //                 res.status(201).json(user)
+    //             })
+    //        }else{
+    //            res.status(404).json({
+    //                errorMessage: "The user with the specified ID does not exist."
+    //            })
+    //        }
+    //    })
+    //    .catch(err => {
+    //        res.status(500).json({
+    //            errorMessage: "The user information could not be modified."
+    //        })
+    //    })
+ })
 
 router.delete('/:id', restricted, (req, res) => {
   const { id } = req.params;

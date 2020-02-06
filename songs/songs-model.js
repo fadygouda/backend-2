@@ -25,10 +25,10 @@ function add(song) {
         })
 }
 
-function update(id, song) {
-    return db('songs')
-        .where('id', Number(id))
-        .update(song);
+function update(id, changes) {
+    return db("users")
+        .where({ id })
+        .update(changes);
 }
 
 function remove(id) {
