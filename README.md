@@ -249,6 +249,92 @@ HTTP Method: **GET**
 
 ### SONGS CANNOT BE ACCESSED WITHOUT A TOKEN
 
+#### Headers
+
+| name           | type   | required | description              |
+| -------------- | ------ | -------- | ------------------------ |
+| `Content-Type` | String | Yes      | Must be application/json |
+| `Authorization`| String | Yes      | JSON Web Token           |
+
+#### Response
+- Successful GET Requests gives the following response:
+
+```
+[
+     { 
+          "id": "2RM4jf1Xa9zPgMGRDiht8O",
+          "song_title": "Big Bank feat. 2 Chainz, Big Sean, Nicki Minaj",
+          "artist": "YG",
+          "favourite": null,
+          "user_id": null,
+          "suggested_songs": null,
+          "suggested_track_ids": null
+      },
+      {
+          "id": "1tHDG53xJNGsItRA3vfVgs",
+          "song_title": "BAND DRUM (feat. A$AP Rocky)",
+          "artist": "YG",
+          "favourite": null,
+          "user_id": null,
+          "suggested_songs": null,
+          "suggested_track_ids": null
+      }
+]
+
+
+```
+
+#### Status Code 500 - List Could Not Be Retrieved.
+- A problem with the server or hosting issue could render a response in the list not being retrieved. 
+
+
+## Get Songs By Id
+### Selects A Song Based The Id#
+Method Url: ``` /api/songs/:id ```
+HTTP Method: **GET**
+
+### SONGS CANNOT BE ACCESSED WITHOUT A TOKEN
+
+#### Response
+- A Successful Get by id request will render the following response:
+
+```
+
+{
+    "id": "1tHDG53xJNGsItRA3vfVgs",
+    "song_title": "BAND DRUM (feat. A$AP Rocky)",
+    "artist": "YG",
+    "favourite": null,
+    "user_id": null,
+    "suggested_songs": null,
+    "suggested_track_ids": null
+}
+
+```
+
+#### Status Code 404
+- An invalid song id will render the following response:
+
+```
+{
+    "errorMessage": "Could not find song"
+}
+
+```
+#### Status Code 500 - List Could Not Be Retrieved.
+- A problem with the server or hosting issue could render a response in the song not being retrieved. 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
