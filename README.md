@@ -75,7 +75,7 @@ HTTP Method: **POST**
 #### Response 
 
 #### Status 201 - Successful Signup
-- If the user signup was successful, the server will return the following  response:
+- If the user signup is successful, the server will return the following  response:
 
 ```
 {
@@ -89,7 +89,7 @@ HTTP Method: **POST**
 ```
 
 #### User Already In Database
-- If the user already has an account, the server will will return the following  response:
+- If the user already has an account, the server will return the following  response:
 
 ```
 
@@ -170,7 +170,7 @@ HTTP Method: **POST**
 | `password`  | String | Yes      | Not Nullable   |
 
 #### Status 200 - Successful Sign In
-- If the user sign in was successful, the server will return a token, the username,and the User ID in the following  response:
+- If the user sign in is successful, the server will return a token, the username,and the User ID in the following  response:
 
 ```
 {
@@ -191,6 +191,34 @@ HTTP Method: **POST**
 }
 
 ```
+
+# Edit A User
+
+### Edits User Information
+Method Url: ``` /api/users/:id ```
+HTTP Method: **PUT**
+
+#### Headers
+
+| name           | type   | required | description              |
+| -------------- | ------ | -------- | ------------------------ |
+| `Content-Type` | String | Yes      | Must be application/json |
+
+#### Body
+
+| name        | type   | required | description    |
+| ----------- | ------ | -------- | -------------- |
+| `username`  | String | Yes      | Not Nullable   |
+| `password`  | String | Yes      | Not Nullable   |
+| `email`     | String | Yes      | Not Nullable   |
+| `firstName` | String | Yes      | Not Nullable   |
+| `lastName`  | String | Yes      | Not Nullable   |
+
+#### Status 200 - Successful Edit
+- If the user edit is successful, the server will return a token, the username,and the User ID in the following  response:
+
+
+
 
 
 

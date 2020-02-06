@@ -53,29 +53,6 @@ router.put('/:id', restricted, (req, res) => {
                errorMessage: err.message
             })
       })
-    //    if (!user) {
-    //        return res.status(400).json({ 
-    //            errorMessage: "Please provide username, password, first name, and last name for the user."
-    //        })
-    //    }
-    //      Users.update(user)
-    //    .then(userUpdate => {
-    //        if(userUpdate) {
-    //            Users.findById(id)
-    //             .then(user => {
-    //                 res.status(201).json(user)
-    //             })
-    //        }else{
-    //            res.status(404).json({
-    //                errorMessage: "The user with the specified ID does not exist."
-    //            })
-    //        }
-    //    })
-    //    .catch(err => {
-    //        res.status(500).json({
-    //            errorMessage: "The user information could not be modified."
-    //        })
-    //    })
  })
 
 router.delete('/:id', restricted, (req, res) => {
