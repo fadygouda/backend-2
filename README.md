@@ -191,12 +191,15 @@ HTTP Method: **POST**
 }
 
 ```
+#User Routes
 
-# Edit A User
+### Edit A User
 
 ### Edits User Information
 Method Url: ``` /api/users/:id ```
 HTTP Method: **PUT**
+
+### CRUD OPERATIONS CANNOT BE ACCESSED WITHOUT A TOKEN
 
 #### Headers
 
@@ -223,6 +226,19 @@ HTTP Method: **PUT**
 }
 
 ```
+
+### Delete A User
+- Removes a user from the database
+
+Method Url: ``` /api/users/:id ```
+HTTP Method: **DELETE**
+
+### CRUD OPERATIONS CANNOT BE ACCESSED WITHOUT A TOKEN
+
+- This action doesn't return a response.  If there are no listed error messages, user was deleted successfully.
+
+
+
 
 # Song Routes
 
