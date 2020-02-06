@@ -33,7 +33,7 @@ function add(user) {
         })
 }
 
-function update(user) {
+function update(id, user) {
     return db('users')
     .where('id', Number(id))
     .update(user);

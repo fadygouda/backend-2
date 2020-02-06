@@ -6,6 +6,7 @@ const Users = require('./user-model');
 const restricted = require('../auth/restricted-middleware');
 
 router.get('/', restricted, (req, res) => {
+ 
  Users.find()
     .then(users => {
         res.status(200).json(users)
@@ -20,17 +21,17 @@ router.get('/', restricted, (req, res) => {
 })
 
 router.put('/:id', restricted, (req, res) => {
-   const id = req.params.id;
-      const { username, password, email, firstName, lastName } = req.body; 
-       if (!username || !password || !email || !firstName || !lastName) {
+      const {id} = req.params;
+      const user = req.body; 
+       if (!user) {
            return res.status(400).json({ 
                errorMessage: "Please provide username, password, firs name, and last name for the user."
            })
        }
-       Users.update(id, {username, password, email, firstName, lastName})
+         Users.update(user)
        .then(userUpdate => {
            if(userUpdate) {
-               Users.findById(id)
+               dBase.findById(id)
                 .then(user => {
                     res.status(201).json(user)
                 })
