@@ -216,6 +216,24 @@ HTTP Method: **PUT**
 
 #### Status 200 - Successful Edit
 - If the user edit is successful, the server will return a token, the username,and the User ID in the following  response:
+```
+
+{
+    "message": "User updated successfully!!!"
+}
+
+```
+
+# Song Routes
+
+## Get Songs
+### Returns Full List of Songs In The Database
+Method Url: ``` /api/songs ```
+HTTP Method: **GET**
+
+### SONGS CANNOT BE ACCESSED WITHOUT A TOKEN
+
+
 
 
 

@@ -60,7 +60,7 @@ router.delete('/:id', restricted, (req, res) => {
   Users.remove(id)
     .then(userRemoved => {
       if (userRemoved) {
-        res.status(204).json(userRemoved)
+        res.status(204).json({ message: 'Sorry to see you go'})
       } else {
         res.status(404).json({
           errorMessage: "The user with the specified ID does not exist."
