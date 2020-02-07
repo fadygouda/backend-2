@@ -22,7 +22,7 @@ router.get('/', restricted, (req, res) => {
 })
 
 router.put('/:id', restricted, (req, res) => {
-      const {id} = req.params;
+      const id = req.params.id;
       const userData = req.body; 
       console.log(id);
       console.log(userData);
@@ -55,26 +55,6 @@ router.put('/:id', restricted, (req, res) => {
       })
  })
 
-router.delete('/:id', restricted, (req, res) => {
-  const { id } = req.params;
-  Users.remove(id)
-    .then(userRemoved => {
-      if (userRemoved) {
-        res.status(204).json({ message: 'Sorry to see you go'})
-      } else {
-        res.status(404).json({
-          errorMessage: "The user with the specified ID does not exist."
-        })
-      }
-    })
-    .catch(err => {
-      res.status(500).json({
-        errorMessage: "The user could not be removed"
-      })
-    })
-
-
-})
 
 
 module.exports = router;

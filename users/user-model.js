@@ -41,6 +41,7 @@ function update(id, user) {
     .update(user, '*');
 }
 
+
 function remove(id) {
     return db('users')
     .where('id', Number(id))
