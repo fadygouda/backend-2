@@ -46,11 +46,30 @@ router.get('/:id', restricted, (req, res) => {
         })
 })
 
+//Retrieve Suggested Song List 
+
+router.get('/suggested-songs', restricted, (req, res) => {
+    
+    Songs.findNewSongs()
+        .then(newSongs => {
+            res.status(200).json(newSongs)
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                errorMessage: "Error retrieving the list of songs",
+                message: err.message
+            })
+        })
+
+});
+
+
 //Add a song
 
 router.post('/', restricted, (req, res) => {
     const songData = req.body;
-
+    
     Songs.insert(songData)
         .then(id => {
             res.status(201).json({created: id })
@@ -62,6 +81,10 @@ router.post('/', restricted, (req, res) => {
                 message: err.message
             });
         });
+})
+
+router.get('/suggested-songs', restricted, (req, res) => {
+
 })
 
 module.exports = router;

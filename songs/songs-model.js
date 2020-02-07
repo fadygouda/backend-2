@@ -4,12 +4,17 @@ module.exports = {
     add,
     find,
     findById,
+    findNewSongs,
     update,
     remove
 }
 
 function find() {
     return db.select('*').from('songs')
+}
+
+function findNewSongs() {
+    return db.select('*').from('songs_new')
 }
 
 function findById(id) {
