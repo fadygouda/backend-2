@@ -20,9 +20,9 @@ router.post('/signup', validateNewUser, (req, res) => {
         .then(newUser => {
             console.log(newUser)
             res.status(201).json({
-              user: newUser[0].username,
-              id: newUser[0].id,
-              message: `Welcome to Spotify ${newUser[0].firstName}`
+              user: newUser.username,
+              id: newUser.id,
+              message: `Welcome to Spotify ${newUser.firstName}`
             })
         })
         .catch(err => {
