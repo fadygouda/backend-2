@@ -18,7 +18,7 @@ server.use("/api/songs", songsRouter);
 server.use("/api/suggested", suggestedRouter)
 
 server.get("/", (req, res) => {
-  res.send('<h2>Its Working!!!</h2>');
+  res.send({ Greeting: 'Greetings from Port 5500!!!' });
 });
 
 module.exports = server;
